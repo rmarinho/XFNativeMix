@@ -9,9 +9,7 @@ namespace nativemix
 	{
 		public App()
 		{
-			var vm = new DemoViewModel { LabelName = "Hello from Forms" };
-			vm.ChangeTextCommand = new Command(() => { vm.LabelName = "Changed Text from Froms"; });
-			MainPage = new NavigationPage(new MyPage { Title = "NativeVies", BindingContext = vm });
+			MainPage = new NavigationPage(new MyPage());
 		}
 
 		protected override void OnStart()
@@ -30,37 +28,5 @@ namespace nativemix
 		}
 	}
 
-	public class DemoViewModel : INotifyPropertyChanged
-	{
 
-		public Command ChangeTextCommand
-		{
-			get;
-			set;
-		}
-
-		string _labelName;
-		public string LabelName
-		{
-			get { return _labelName; }
-			set
-			{
-				if (_labelName == value)
-					return;
-				_labelName = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChangedEventHandler handler = PropertyChanged;
-			if (handler != null)
-			{
-				handler(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
 }

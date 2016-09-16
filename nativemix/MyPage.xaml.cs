@@ -1,15 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace nativemix
 {
-    public partial class MyPage : ContentPage
-    {
-        public MyPage()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class MyPage : ContentPage
+	{
+		public MyPage()
+		{
+			InitializeComponent();
+			BindingContext = new DemoViewModel();
+		}
+	}
+
+	public class DemoViewModel : INotifyPropertyChanged
+	{
+
+		public Command ChangeTextCommand => new Command(() => { LabelName = "Changed Text from Froms"; });
+
+		string _labelName = "Hello from Forms";
+		public string LabelName
+		{
+			get { return _labelName; }
+			set
+			{
+				if (_labelName == value)
+					return;
+				_labelName = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
+			{
+				handler(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
 }

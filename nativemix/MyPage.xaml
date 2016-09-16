@@ -4,9 +4,7 @@
     <StackLayout>
         <Button Text="Change Text From Forms" Command="{Binding ChangeTextCommand}"></Button>
         <ios:UILabel Text="{Binding LabelName}" />
-        <ios:UITextField Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
-        
-        <android:TextView Text="{Binding LabelName}" />
+        <ios:UITextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
     </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

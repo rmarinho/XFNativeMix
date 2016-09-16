@@ -21,6 +21,9 @@ namespace nativemix.iOS
 
 			LoadApplication(new App());
 
+			var s = new UITextView();
+			s.BackgroundColor = UIColor.Red;
+
 			return base.FinishedLaunching(app, options);
 		}
 	}
