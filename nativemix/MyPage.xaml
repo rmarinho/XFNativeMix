@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS" xmlns:android="clr-namespace:Android.Views;assembly=Mono.Android;targetPlatform=Android" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="nativemix.MyPage">
+<ContentPage Title="Xaml Native Views" 
+            xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS" 
+            xmlns:android="clr-namespace:Android.Views;assembly=Mono.Android;targetPlatform=Android" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="nativemix.MyPage">
 	<ContentPage.Content>
-    <StackLayout>
+    <StackLayout BackgroundColor="#eeeeee">
         <Button Text="Change Text From Forms" Command="{Binding ChangeTextCommand}"></Button>
         <ios:UILabel Text="{Binding LabelName}" />
         <ios:UITextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
