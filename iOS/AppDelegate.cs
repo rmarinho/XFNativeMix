@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-
+using AdvancedColorPicker;
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace nativemix.iOS
 {
@@ -18,10 +21,27 @@ namespace nativemix.iOS
 #if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 #endif
-
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);
+		}
+	}
+
+
+	public class UIColorConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (value is Color)
+				return ((Color)value).ToUIColor();
+			return value;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (value is UIColor)
+				return ((UIColor)value).ToColor();
+			return value;
 		}
 	}
 }

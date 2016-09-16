@@ -33,6 +33,19 @@ namespace nativemix
 			}
 		}
 
+		Color _formsSelectedColor = Color.Pink;
+		public Color FormsSelectedColor
+		{
+			get { return _formsSelectedColor; }
+			set
+			{
+				if (_formsSelectedColor == value)
+					return;
+				_formsSelectedColor = value;
+				OnPropertyChanged();
+			}
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

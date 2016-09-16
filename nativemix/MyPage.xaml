@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage Title="Xaml Native Views" 
-            xmlns="http://xamarin.com/schemas/2014/forms" 
-            xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS" 
-            xmlns:android="clr-namespace:Android.Views;assembly=Mono.Android;targetPlatform=Android" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="nativemix.MyPage">
+<ContentPage Title="Xaml Native Views" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS" xmlns:iosCoreGraphics="clr-namespace:CoreGraphics;assembly=Xamarin.iOS;targetPlatform=iOS" xmlns:iosColorPicker="clr-namespace:AdvancedColorPicker;assembly=nativemix.iOS;targetPlatform=iOS" xmlns:iosControls="clr-namespace:nativemix.iOS;assembly=nativemix.iOS;targetPlatform=iOS" xmlns:android="clr-namespace:Android.Views;assembly=Mono.Android;targetPlatform=Android" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="nativemix.MyPage">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<iosControls:UIColorConverter x:Key="colorConverterIOS" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
-    <StackLayout BackgroundColor="#eeeeee">
-        <Button Text="Change Text From Forms" Command="{Binding ChangeTextCommand}"></Button>
-        <ios:UILabel Text="{Binding LabelName}" />
-        <ios:UITextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
-    </StackLayout>
+		<StackLayout BackgroundColor="#eeeeee">
+            <Label Text="This text color is Bound to the picker" TextColor="{Binding FormsSelectedColor}"></Label>
+			<Button Text="Change Text From Forms" Command="{Binding ChangeTextCommand}" />
+			<ios:UILabel BackgroundColor="{x:Static ios:UIColor.LightGray}" Text="{Binding LabelName,}" />
+			<ios:UITextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
+			<iosColorPicker:ColorPickerView 
+                SelectedColor="{Binding Path=FormsSelectedColor,
+                                        Mode=TwoWay, 
+                                        Converter={StaticResource colorConverterIOS}, 
+                                        UpdateSourceEventName=ColorPicked}" >
+				<x:Arguments>
+					<iosCoreGraphics:CGRect>
+						<x:Arguments>
+							<x:Double>0</x:Double>
+							<x:Double>0</x:Double>
+                            <x:Double>300</x:Double>
+                            <x:Double>300</x:Double>                
+						</x:Arguments>
+					</iosCoreGraphics:CGRect>
+				</x:Arguments>
+			</iosColorPicker:ColorPickerView>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
