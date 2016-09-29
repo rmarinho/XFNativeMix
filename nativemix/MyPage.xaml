@@ -12,24 +12,23 @@
 		<ResourceDictionary>
 			<iosControls:UIColorConverter x:Key="colorConverterIOS" />
             <androidNativeMix:DroidColorConverter x:Key="colorConverterDroid" />
-            
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="#eeeeee">
             <Label Text="This text color is Bound to the picker" TextColor="{Binding FormsSelectedColor}"></Label>
 			<Button Text="Change Text From Forms" Command="{Binding ChangeTextCommand}" />
-			<ios:UILabel BackgroundColor="{x:Static ios:UIColor.LightGray}" Text="{Binding LabelName}" />
+			
+            <ios:UILabel BackgroundColor="{x:Static ios:UIColor.LightGray}" Text="{Binding LabelName}" />
             <androidWidget:TextView x:Arguments="{x:Static formsandroid:Forms.Context}" Text="{Binding LabelName}"  />
 			
             <ios:UITextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
             <androidWidget:EditText Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=AfterTextChanged}" x:Arguments="{x:Static formsandroid:Forms.Context}"></androidWidget:EditText>
 			
-            <iosColorPicker:ColorPickerView 
-                SelectedColor="{Binding Path=FormsSelectedColor,
-                                        Mode=TwoWay, 
-                                        Converter={StaticResource colorConverterIOS}, 
-                                        UpdateSourceEventName=ColorPicked}" >
+            <iosColorPicker:ColorPickerView SelectedColor="{Binding Path=FormsSelectedColor,
+                                                                    Mode=TwoWay, 
+                                                                    Converter={StaticResource colorConverterIOS}, 
+                                                                    UpdateSourceEventName=ColorPicked}" >
 				<x:Arguments>
 					<iosCoreGraphics:CGRect>
 						<x:Arguments>
@@ -40,18 +39,11 @@
 						</x:Arguments>
 					</iosCoreGraphics:CGRect>
 				</x:Arguments>
-			</iosColorPicker:ColorPickerView>
-            
-         <!--   <androidNativeMix:ColorPickerView 
-                SelectedColor="{Binding Path=FormsSelectedColor,
-                                        Mode=TwoWay, 
-                                        Converter={StaticResource colorConverterDroid}, 
-                                        UpdateSourceEventName=ColorPicked}" >
-                <x:Arguments>
-                    <x:Double>300</x:Double>
-                    <x:Double>300</x:Double>                
-                </x:Arguments>
-           </androidNativeMix:ColorPickerView>-->
+			</iosColorPicker:ColorPickerView>            
+            <androidNativeMix:ColorPickerView SelectedColor="{Binding Path=FormsSelectedColor,
+                                                                      Mode=TwoWay, 
+                                                                      Converter={StaticResource colorConverterDroid}, 
+                                                                      UpdateSourceEventName=ColorPicked}" />
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

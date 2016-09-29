@@ -29,10 +29,12 @@ namespace nativemix.Droid
 		//public event PropertyChangedEventHandler PropertyChanged;
 		public event EventHandler ColorPicked;
 
-		public ColorPickerView(int minWidth, int minHeight) : base(Forms.Context)
+		public ColorPickerView() : base(Forms.Context)
 		{
 			var context = Forms.Context;
 			SelectedColor = Xamarin.Forms.Color.Black.ToAndroid();
+			int minWidth = 300;
+			int minHeight = 300;
 
 			SetMinimumHeight(minHeight);
 			SetMinimumWidth(minWidth);
