@@ -17,7 +17,6 @@ namespace nativemix
 
 	public class DemoViewModel : INotifyPropertyChanged
 	{
-
 		public Command ChangeTextCommand => new Command(() => { LabelName = "Changed Text from Froms"; });
 
 		string _labelName = "Hello from Forms";

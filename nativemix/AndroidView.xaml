@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="nativemix.AndroidView"
+    xmlns:androidWidget="clr-namespace:Android.Widget;assembly=Mono.Android;targetPlatform=Android"
+    xmlns:formsandroid="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Platform.Android;targetPlatform=Android"
+    xmlns:androidNativeMix="clr-namespace:nativemix.Droid;assembly=nativemix.Droid;targetPlatform=Android" >
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <androidNativeMix:DroidColorConverter x:Key="colorConverterDroid" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout>
+            <androidWidget:TextView x:Arguments="{x:Static formsandroid:Forms.Context}" Text="{Binding LabelName}" />
+            <androidNativeMix:CustomTextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=TextChanged}" x:Arguments="{x:Static formsandroid:Forms.Context}" />
+            <androidNativeMix:ColorPickerView SelectedColor="{Binding Path=FormsSelectedColor,
+                                                                Mode=TwoWay, 
+                                                                Converter={StaticResource colorConverterDroid}, 
+                                                                UpdateSourceEventName=ColorPicked}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
