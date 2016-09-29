@@ -23,7 +23,7 @@
             <androidWidget:TextView x:Arguments="{x:Static formsandroid:Forms.Context}" Text="{Binding LabelName}"  />
 			
             <ios:UITextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=Ended}" />
-            <androidWidget:EditText Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=AfterTextChanged}" x:Arguments="{x:Static formsandroid:Forms.Context}"></androidWidget:EditText>
+            <androidNativeMix:CustomTextView Text="{Binding LabelName, Mode=TwoWay, UpdateSourceEventName=TextChanged}" x:Arguments="{x:Static formsandroid:Forms.Context}" />
 			
             <iosColorPicker:ColorPickerView SelectedColor="{Binding Path=FormsSelectedColor,
                                                                     Mode=TwoWay, 

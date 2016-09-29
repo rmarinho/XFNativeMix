@@ -29,6 +29,27 @@ namespace nativemix.Droid
 		}
 	}
 
+	public class CustomTextView : Android.Widget.EditText
+	{
+
+		public CustomTextView(Context context) : base(context)
+		{
+
+		}
+
+		public override void OnEditorAction(Android.Views.InputMethods.ImeAction actionCode)
+		{
+			base.OnEditorAction(actionCode);
+		}
+
+		public override void SetText(Java.Lang.ICharSequence text, TextView.BufferType type)
+		{
+			base.SetText(text, type);
+			if (text != null && text.Length() > 0)
+				SetSelection(text.Length());
+		}
+	}
+
 	public class DroidColorConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
